@@ -32,7 +32,8 @@ byæ u¿ywane z poziomu edytorów kodu ¼ród³owego i IDE.
 
 %build
 %configure2_13
-%{__make}
+%{__make} \
+    CFLAGS="%{rpmcflags} -Wall -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
