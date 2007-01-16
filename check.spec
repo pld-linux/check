@@ -2,12 +2,14 @@ Summary:	Check - unit testing framework for C
 Summary(pl):	Check - szkielet testów jednostkowych dla C
 Name:		check
 Version:	0.9.5
-Release:	0.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
 # Source0-md5:	30143c7974b547a12a7da47809a90951
 URL:		http://check.sourceforge.net/
+BuildRequires:	libtool
+BuildRequires:	texinfo >= 4.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,12 +43,25 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_docdir}/%{name}/{COPYING.LESSER,ChangeLog,ChangeLogOld,NEWS,README,SVNChangeLog}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libcheck.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%postun
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog* NEWS README doc/*.html
-%{_libdir}/libcheck.a
-%{_includedir}/check.h
+%doc AUTHORS ChangeLog* NEWS README SVNChangeLog
 %{_aclocaldir}/check.m4
+%{_includedir}/check.h
+%{_libdir}/libcheck.a
+%{_libdir}/libcheck.so.0.0.0
+%{_pkgconfigdir}/check.pc
+%{_docdir}/%{name}/example/
+%{_infodir}/check.info*
