@@ -1,12 +1,12 @@
 Summary:	Check - unit testing framework for C
 Summary(pl):	Check - szkielet testów jednostkowych dla C
 Name:		check
-Version:	0.9.3
-Release:	2
+Version:	0.9.5
+Release:	0.1
 License:	LGPL v2.1+
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
-# Source0-md5:	6e5870f7c9c5414572158d8005e91d68
+# Source0-md5:	30143c7974b547a12a7da47809a90951
 URL:		http://check.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
