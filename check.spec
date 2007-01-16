@@ -41,9 +41,12 @@ byæ u¿ywane z poziomu edytorów kodu ¼ród³owego i IDE.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	exampledir=%{_examplesdir}/%{name}-%{version} \
+	examplesrcdir=%{_examplesdir}/%{name}-%{version}/src \
+	exampletestsdir=%{_examplesdir}/%{name}-%{version}/tests \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_docdir}/%{name}/{COPYING.LESSER,ChangeLog,ChangeLogOld,NEWS,README,SVNChangeLog}
+rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}/
 rm -f $RPM_BUILD_ROOT%{_libdir}/libcheck.la
 
 %clean
@@ -63,5 +66,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libcheck.a
 %{_libdir}/libcheck.so.0.0.0
 %{_pkgconfigdir}/check.pc
-%{_docdir}/%{name}/example/
+%{_examplesdir}/%{name}-%{version}
 %{_infodir}/check.info*
