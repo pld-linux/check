@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
 URL:		http://check.sourceforge.net/
 BuildRequires:	libtool
 BuildRequires:	texinfo >= 4.2
+Requires(post,postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,7 +36,7 @@ byæ u¿ywane z poziomu edytorów kodu ¼ród³owego i IDE.
 %build
 %configure2_13
 %{__make} \
-    CFLAGS="%{rpmcflags} -Wall -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings -fPIC"
+	CFLAGS="%{rpmcflags} -Wall -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -46,25 +47,29 @@ rm -rf $RPM_BUILD_ROOT
 	exampletestsdir=%{_examplesdir}/%{name}-%{version}/tests \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}/
+rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libcheck.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
+/sbin/ldconfig
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %postun
+/sbin/ldconfig
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* NEWS README SVNChangeLog
-%{_aclocaldir}/check.m4
-%{_includedir}/check.h
+%attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcheck.so
+# -static ?
 %{_libdir}/libcheck.a
-%{_libdir}/libcheck.so.0.0.0
+%{_includedir}/check.h
+%{_aclocaldir}/check.m4
 %{_pkgconfigdir}/check.pc
-%{_examplesdir}/%{name}-%{version}
 %{_infodir}/check.info*
+%{_examplesdir}/%{name}-%{version}
