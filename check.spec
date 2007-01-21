@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog* NEWS README SVNChangeLog
+%doc AUTHORS ChangeLog* NEWS README SVNChangeLog THANKS TODO
 %attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
 %attr(755,root,root) %{_libdir}/libcheck.so
 # -static ?
