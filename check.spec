@@ -1,5 +1,5 @@
 Summary:	Check - unit testing framework for C
-Summary(pl.UTF-8):   Check - szkielet testów jednostkowych dla C
+Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
 Version:	0.9.5
 Release:	1
