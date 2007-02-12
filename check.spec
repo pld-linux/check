@@ -1,5 +1,5 @@
 Summary:	Check - unit testing framework for C
-Summary(pl):	Check - szkielet testów jednostkowych dla C
+Summary(pl.UTF-8):   Check - szkielet testÃ³w jednostkowych dla C
 Name:		check
 Version:	0.9.5
 Release:	1
@@ -21,14 +21,14 @@ assertion failures and code errors that cause segmentation faults or
 other signals. The output from unit tests can be used within source
 code editors and IDEs.
 
-%description -l pl
-Check to szkielet testów jednostkowych dla C. Ma prosty interfejs do
-definiowania testów jednostkowych, nie przeszkadzaj±cy zbytnio
-programi¶cie. Testy s± uruchamiane w wydzielonej przestrzeni
-adresowej, dziêki czemu Check mo¿e wy³apaæ zarówno niepowodzenia
-zapewnieñ (assert), jak i b³êdy w kodzie powoduj±ce naruszenie
-ochrony pamiêci lub inne sygna³y. Wyj¶cie z testów jednostkowych mo¿e
-byæ u¿ywane z poziomu edytorów kodu ¼ród³owego i IDE.
+%description -l pl.UTF-8
+Check to szkielet testÃ³w jednostkowych dla C. Ma prosty interfejs do
+definiowania testÃ³w jednostkowych, nie przeszkadzajÄ…cy zbytnio
+programiÅ›cie. Testy sÄ… uruchamiane w wydzielonej przestrzeni
+adresowej, dziÄ™ki czemu Check moÅ¼e wyÅ‚apaÄ‡ zarÃ³wno niepowodzenia
+zapewnieÅ„ (assert), jak i bÅ‚Ä™dy w kodzie powodujÄ…ce naruszenie
+ochrony pamiÄ™ci lub inne sygnaÅ‚y. WyjÅ›cie z testÃ³w jednostkowych moÅ¼e
+byÄ‡ uÅ¼ywane z poziomu edytorÃ³w kodu ÅºrÃ³dÅ‚owego i IDE.
 
 %prep
 %setup -q
