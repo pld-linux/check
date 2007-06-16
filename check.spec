@@ -7,6 +7,7 @@ License:	LGPL v2.1+
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
 # Source0-md5:	30143c7974b547a12a7da47809a90951
+Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
 BuildRequires:	libtool
 BuildRequires:	texinfo >= 4.2
@@ -44,11 +45,12 @@ Biblioteka statyczna check.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%configure2_13
-%{__make} \
-	CFLAGS="%{rpmcflags} -Wall -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings -fPIC"
+CFLAGS="%{rpmcflags} -fPIC"
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
