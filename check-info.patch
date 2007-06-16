@@ -1,0 +1,14 @@
+--- check-0.9.5/doc/check.texi.orig	2006-11-22 00:19:14.000000000 +0100
++++ check-0.9.5/doc/check.texi	2007-06-16 21:55:00.050204361 +0200
+@@ -26,9 +26,9 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory Software development
++@dircategory Programming tools:
+ @direntry
+-* Check: (check)Introduction.
++* Check: (check)Introduction.		Unit test framework for C programs
+ @end direntry
+ 
+ @titlepage
