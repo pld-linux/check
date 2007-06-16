@@ -30,6 +30,18 @@ zapewnień (assert), jak i błędy w kodzie powodujące naruszenie
 ochrony pamięci lub inne sygnały. Wyjście z testów jednostkowych może
 być używane z poziomu edytorów kodu źródłowego i IDE.
 
+%package static
+Summary:	Static check library
+Summary(pl.UTF-8):	Biblioteka statyczna check
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description static
+Static check library.
+
+%description static -l pl.UTF-8
+Biblioteka statyczna check.
+
 %prep
 %setup -q
 
@@ -66,10 +78,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog* NEWS README SVNChangeLog THANKS TODO
 %attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
 %attr(755,root,root) %{_libdir}/libcheck.so
-# -static ?
-%{_libdir}/libcheck.a
 %{_includedir}/check.h
 %{_aclocaldir}/check.m4
 %{_pkgconfigdir}/check.pc
 %{_infodir}/check.info*
 %{_examplesdir}/%{name}-%{version}
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libcheck.a
