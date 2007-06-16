@@ -8,7 +8,7 @@
 +@dircategory Programming tools:
  @direntry
 -* Check: (check)Introduction.
-+* Check: (check)Introduction.		Unit test framework for C programs
++* Check: (check).			Unit test framework for C programs
  @end direntry
  
  @titlepage
