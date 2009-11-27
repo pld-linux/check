@@ -11,11 +11,12 @@ Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
 # aclocal required for %{_aclocaldir}
 BuildRequires:	automake
-BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	texinfo >= 4.2
 Requires(post,postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%undefine	__cxx
 
 %description
 Check is a unit test framework for C. It features a simple interface
