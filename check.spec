@@ -9,6 +9,9 @@ Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
 # Source0-md5:	30143c7974b547a12a7da47809a90951
 Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
+# aclocal required for %{_aclocaldir}
+BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	texinfo >= 4.2
 Requires(post,postun):	/sbin/ldconfig
