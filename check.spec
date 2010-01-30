@@ -2,10 +2,10 @@ Summary:	Check - unit testing framework for C
 Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
 Version:	0.9.5
-Release:	1
+Release:	2
 License:	LGPL v2.1+
-Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/check/%{name}-%{version}.tar.gz
+Group:		Libraries
+Source0:	http://downloads.sourceforge.net/check/%{name}-%{version}.tar.gz
 # Source0-md5:	30143c7974b547a12a7da47809a90951
 Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
@@ -31,15 +31,23 @@ Check to szkielet testów jednostkowych dla C. Ma prosty interfejs do
 definiowania testów jednostkowych, nie przeszkadzający zbytnio
 programiście. Testy są uruchamiane w wydzielonej przestrzeni
 adresowej, dzięki czemu Check może wyłapać zarówno niepowodzenia
-zapewnień (assert), jak i błędy w kodzie powodujące naruszenie
-ochrony pamięci lub inne sygnały. Wyjście z testów jednostkowych może
-być używane z poziomu edytorów kodu źródłowego i IDE.
+zapewnień (assert), jak i błędy w kodzie powodujące naruszenie ochrony
+pamięci lub inne sygnały. Wyjście z testów jednostkowych może być
+używane z poziomu edytorów kodu źródłowego i IDE.
+
+%package devel
+Summary:	Libraries and headers for developing programs with check
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Libraries and headers for developing programs with check
 
 %package static
 Summary:	Static check library
 Summary(pl.UTF-8):	Biblioteka statyczna check
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static check library.
@@ -83,6 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* NEWS README SVNChangeLog THANKS TODO
 %attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
+
+%files devel
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcheck.so
 %{_includedir}/check.h
 %{_aclocaldir}/check.m4
