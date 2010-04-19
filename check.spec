@@ -1,19 +1,18 @@
 Summary:	Check - unit testing framework for C
 Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
-Version:	0.9.5
-Release:	2
+Version:	0.9.8
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/check/%{name}-%{version}.tar.gz
-# Source0-md5:	30143c7974b547a12a7da47809a90951
+# Source0-md5:	5d75e9a6027cde79d2c339ef261e7470
 Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
 # aclocal required for %{_aclocaldir}
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	texinfo >= 4.2
-Requires(post,postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -75,22 +74,25 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libcheck.la
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+%post devel -p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
+
+%postun devel -p /sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* NEWS README SVNChangeLog THANKS TODO
 %attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcheck.so.0
 
 %files devel
 %defattr(644,root,root,755)
