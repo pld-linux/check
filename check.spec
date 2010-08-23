@@ -25,6 +25,8 @@ assertion failures and code errors that cause segmentation faults or
 other signals. The output from unit tests can be used within source
 code editors and IDEs.
 
+This package contains only shared library.
+
 %description -l pl.UTF-8
 Check to szkielet testów jednostkowych dla C. Ma prosty interfejs do
 definiowania testów jednostkowych, nie przeszkadzający zbytnio
@@ -34,13 +36,19 @@ zapewnień (assert), jak i błędy w kodzie powodujące naruszenie ochrony
 pamięci lub inne sygnały. Wyjście z testów jednostkowych może być
 używane z poziomu edytorów kodu źródłowego i IDE.
 
+Ten pakiet zawiera tylko bibliotekę współdzieloną.
+
 %package devel
-Summary:	Libraries and headers for developing programs with check
+Summary:	Headers for developing programs with check library
+Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu biblioteki checka
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Libraries and headers for developing programs with check
+Headers for developing programs with check library.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe do tworzenia programów przy użyciu biblioteki checka.
 
 %package static
 Summary:	Static check library
