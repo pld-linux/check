@@ -1,12 +1,12 @@
 Summary:	Check - unit testing framework for C
 Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
-Version:	0.9.8
-Release:	2
+Version:	0.9.10
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/check/%{name}-%{version}.tar.gz
-# Source0-md5:	5d75e9a6027cde79d2c339ef261e7470
+# Source0-md5:	6d10a8efb9a683467b92b3bce97aeb30
 Patch0:		%{name}-info.patch
 URL:		http://check.sourceforge.net/
 # aclocal required for %{_aclocaldir}
@@ -80,9 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 	exampletestsdir=%{_examplesdir}/%{name}-%{version}/tests \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libcheck.la
-rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libcheck.la
+%{__rm} -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -90,10 +90,10 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%post devel -p /sbin/postshell
+%post	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel -p /sbin/postshell
+%postun	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
@@ -104,10 +104,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/checkmk
 %attr(755,root,root) %{_libdir}/libcheck.so
 %{_includedir}/check.h
+%{_includedir}/check_stdint.h
 %{_aclocaldir}/check.m4
 %{_pkgconfigdir}/check.pc
+%{_mandir}/man1/checkmk.1*
 %{_infodir}/check.info*
 %{_examplesdir}/%{name}-%{version}
 
