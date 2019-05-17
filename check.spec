@@ -1,17 +1,24 @@
+#
+# Conditional build:
+%bcond_without	subunit	# support for subunit test protocol
+
 Summary:	Check - unit testing framework for C
 Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
-Version:	0.9.10
-Release:	2
+Version:	0.12.0
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/check/%{name}-%{version}.tar.gz
-# Source0-md5:	6d10a8efb9a683467b92b3bce97aeb30
+#Source0Download: https://github.com/libcheck/check/releases
+Source0:	https://github.com/libcheck/check/releases/download/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	31b17c6075820a434119592941186f70
 Patch0:		%{name}-info.patch
-URL:		http://check.sourceforge.net/
+URL:		https://libcheck.github.io/check/
 # aclocal required for %{_aclocaldir}
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	automake >= 1:1.11.2
+BuildRequires:	libtool >= 2:2
+BuildRequires:	pkgconfig
+%{?with_subunit:BuildRequires:	subunit-devel}
 BuildRequires:	texinfo >= 4.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,6 +50,7 @@ Summary:	Headers for developing programs with check library
 Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów przy użyciu biblioteki checka
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%{?with_subunit:Requires:	subunit-devel}
 
 %description devel
 Headers for developing programs with check library.
@@ -68,7 +76,8 @@ Biblioteka statyczna check.
 
 %build
 CFLAGS="%{rpmcflags} -fPIC"
-%configure
+%configure \
+	%{!?with_subunit:--disable-subunit}
 %{__make}
 
 %install
@@ -98,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog* NEWS README SVNChangeLog THANKS TODO
+%doc AUTHORS NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcheck.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcheck.so.0
 
