@@ -5,14 +5,13 @@
 Summary:	Check - unit testing framework for C
 Summary(pl.UTF-8):	Check - szkielet testów jednostkowych dla C
 Name:		check
-Version:	0.12.0
+Version:	0.15.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/libcheck/check/releases
 Source0:	https://github.com/libcheck/check/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	31b17c6075820a434119592941186f70
-Patch0:		%{name}-info.patch
+# Source0-md5:	50fcafcecde5a380415b12e9c574e0b2
 URL:		https://libcheck.github.io/check/
 # aclocal required for %{_aclocaldir}
 BuildRequires:	automake >= 1:1.11.2
@@ -72,7 +71,6 @@ Biblioteka statyczna check.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 CFLAGS="%{rpmcflags} -fPIC"
