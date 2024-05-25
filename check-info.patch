@@ -1,0 +1,14 @@
+--- check-0.15.2/doc/check.texi.orig	2020-06-28 18:43:26.000000000 +0200
++++ check-0.15.2/doc/check.texi	2024-05-25 17:44:12.096472720 +0200
+@@ -26,9 +26,9 @@ entitled ``@acronym{GNU} Free Documentat
+ @end quotation
+ @end copying
+ 
+-@dircategory Software development
++@dircategory Programming tools:
+ @direntry
+-* Check: (check).               A unit testing framework for C.
++* Check: (check).			A unit testing framework for C
+ @end direntry
+ 
+ @titlepage
