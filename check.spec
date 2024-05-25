@@ -12,6 +12,7 @@ Group:		Libraries
 #Source0Download: https://github.com/libcheck/check/releases
 Source0:	https://github.com/libcheck/check/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	50fcafcecde5a380415b12e9c574e0b2
+Patch0:		%{name}-info.patch
 URL:		https://libcheck.github.io/check/
 # aclocal required for %{_aclocaldir}
 BuildRequires:	automake >= 1:1.11.2
@@ -71,6 +72,7 @@ Biblioteka statyczna check.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 CFLAGS="%{rpmcflags} -fPIC"
